@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	
+	<title>Mini Smart Farm Kit</title>
+	
+	<style>
+		 /*왼쪽 사이드 메뉴*/
+    .side-menu {
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    position: fixed;
+    left: -120px;
+    top: 100px;
+    opacity: .95;
+    overflow: hidden;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+/*We need to hide the default input box*/
+#menu-button {
+    display: none;
+    z-index: 1;
+}
+/*if checkbox is checked next sibling's .side menu child slides in*/
+#menu-button:checked + .menu-wrap .side-menu {
+    left: 0px;
+    z-index: 1;
+}
+/*this is the label for the checkbox which act as a button for our menu*/
+.menu-button--label {
+    z-index: 1;
+    color: black;
+    position: fixed;
+    top: 50px;
+    left: 10px;
+    font-size: 3rem;
+    text-align: center;
+    line-height: 0;
+    cursor: pointer;
+    -webkit-transition: all 1s;
+    transition: all 1s;
+}
+/*Fancy rotation effect for our menu button. It rotates back when mouse leaves it */
+.menu-button--label:hover {
+    z-index: 1;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transition: all 1s;
+    transition: all 1s;
+}
+/*We are giving the li item a shorter width to activate 'pop-out' effect when you hover*/
+.side-menu--list li {
+    z-index: 1;
+    font-size: 0;
+    width: 110px;
+}
+.side-menu--list a {
+    z-index: 1;
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    height: 2rem;
+    line-height: 2rem;
+    background: #333;
+    padding-left: 1rem;
+    width: 110px;
+    font-size: 1.2rem;
+}
+.side-menu--list {
+    z-index: 1;
+    list-style: none;
+    padding-left: 0;
+    width : 10rem;
+}
+/*.subset is a sub-menu that we are styling to stand out a bit*/
+.side-menu--list li a.subset {
+    z-index: 1;
+    font-size: 1.1rem;
+    height: 10rem;
+    line-height: 8rem;
+    padding-left: .5rem;
+    background: #0B3B0B;
+}
+.side-menu--list li:hover {
+    z-index: 1;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    font-size: 2rem;
+    height: 12rem;
+    line-height: 10rem;
+    padding-top : 1.2rem;
+    padding-left: .9rem;
+    cursor: pointer;
+}
+		#bg {
+			position:fixed; 
+			top:-50%; 
+			left:-50%; 
+			width:200%; 
+			height:200%;
+		}
+		#bg img {
+			position:absolute; 
+			top:0; 
+			left:0; 
+			right:0; 
+			bottom:0; 
+			margin:auto; 
+			min-width:50%;
+			min-height:50%;
+		}
+		
+		#page-wrap { position: relative; z-index: 2; width: 400px; margin: 50px auto; padding: 20px; background: white; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; box-shadow: 0 0 20px black; }
+		p { font: 15px/2 Georgia, Serif; margin: 0 0 30px 0; text-indent: 40px; }
+	</style>
+</head>
+
+<body>
+	<!--메뉴-->
+        <!--   MENU STRUCTURE-->
+
+    <!--    Label is linked to the hidden checkbox-->
+    <label for="menu-button" class="menu-button--label">▤</label>
+
+    <!--    Checkbox state controls the menu position. When it is checked the menu slides in-->
+    <input type="checkbox" id="menu-button">
+    
+
+    <!--    .menu-wrap is a wrapper for all the menu structure for the easier traversing-->
+        <div class="menu-wrap">
+            <p style="font-size: 50px; text-align:center; font-weight: bold ;">
+               Plant_Select
+            </p>
+        <div class="side-menu">
+            <ul class="side-menu--list">
+                <li>
+                    <a class="subset" href="http://127.0.0.1:53392/Home.html">Home</a>
+                </li>
+                <li>
+                    <a class="subset" href="http://127.0.0.1:53392/Huminity.html" >Humidity</a>
+                </li>
+                <li>
+                    <a class="subset" href="http://127.0.0.1:53392/Illumination.html">Illumination</a>
+                </li>
+                <li>
+                    <a class="subset" href="http://127.0.0.1:53392/Temperature.html">Temperature</a>
+                </li>
+                <li>
+                    <a class="subset" href="http://127.0.0.1:53392/Setting.html">Setting</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <!--모듈 항목-->
+	<div id="page-wrap">
+        <p style="font-size: 70px; text-align:center; font-weight: bold ;">
+               Available Modules
+            </p>
+        <p><a class="subset" href="http://127.0.0.1:53392/Home.html">Module name1</a></p> 
+        <p><a class="subset" href="http://127.0.0.1:53392/Home.html">Module name2</a></p> 
+        <p><a class="subset" href="http://127.0.0.1:53392/Home.html">Module name3</a></p> 
+        <p><a class="subset" href="http://127.0.0.1:53392/Home.html">Module name4</a></p> 
+
+
+	
+	</div>
+	
+	<!-- At bottom, 'cause it's not really content -->
+	<div id="bg">
+		<img src="c:/plant.png" alt="">
+	</div>
+	
+</body>
+</html>
