@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>                                                     
+    <title>Mini Smart Farm Kit</title>                                                     
 <style>
 body {
     font-family: 'Economica', sans-serif;
@@ -15,7 +15,7 @@ a:hover, a:focus   {
 }
 /*GOOD*/
     #text3d {
-color: #999999;
+color: #ed0b29;
     letter-spacing: .15em;
     text-shadow: 
       -1px -1px 1px #efede3, 
@@ -39,7 +39,56 @@ color: #999999;
       8px 27px 8px rgba(0, 0, 0, 0.5),
       8px 28px 35px rgba(0, 0, 0, 0.9);
  }
-/*¹öÆ°*/
+/*몇 %? 몇 도? 조도의 수치를 나타내는 버튼*/
+    .button{
+  width: 120px;
+  height: 24px;
+  padding: 5px 16px 3px;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border: 2px solid #ccc;
+  position: relative;
+
+  /* Label */
+  font-family: Lucida Sans, Helvetica, sans-serif;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: rgba(10, 10, 10, 0.5) 1px 2px 2px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+  overflow: hidden;
+}
+
+.aqua{
+  background-color: #e5221b;
+  background-image: #ed312a;
+  border-top-color: #e09808;
+  border-right-color: #ce0b04;
+  border-bottom-color: #af0c07;
+  border-left-color: #f41711;
+  font-size: 80px; /*21퍼센트 폰트 사이즈 지정*/
+  box-shadow: rgba(66, 140, 240, 0.5) 0px 10px 16px;
+  -webkit-box-shadow: rgba(66, 140, 240, 0.5) 0px 10px 16px;
+  -moz-box-shadow: rgba(66, 140, 240, 0.5) 0px 10px 16px; /* FF 3.5+ */
+}
+
+.button .glare {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  height: 1px;
+  width: 290px; /*상단 흰색*/
+  padding: 8px 0;
+  background-color: rgba(255, 255, 255, 0.25);
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 95%, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0)));
+}
+/*물,온도,습도 버튼*/
 [class*='btn-'] {
    border-radius: 4px;
    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -48,7 +97,7 @@ color: #999999;
    color: #fff;
    display: inline-block;
    font-family: Arial, Helvetica, sans-serif;
-   font-size: 14px;
+   font-size: 180px;
    padding: 8px 16px;
    text-decoration: none;
    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -62,16 +111,15 @@ color: #999999;
       cursor: pointer;
    }
    .btn-blue {
-      background-color: rgb( 51, 102, 204 );
+      background-color: rgb(224, 31, 24);
       border: 1px solid rgb( 44, 91, 104 );   
    }
    
       .btn-blue:hover {
-         background-color: rgb( 58, 131, 213 );   
-      }
-      
+         background-color: rgb(173, 19, 13);
+    }
       .btn-blue:active {
-         background-color: rgb( 42, 91, 191 );   
+         background-color: rgb(224, 31, 24);   
       }
       
    .btn-primary {
@@ -80,11 +128,11 @@ color: #999999;
    }
    
       .btn-primary:hover {
-         background-color: rgb( 92, 76, 131 );   
+         background-color: rgb(234, 46, 39);   
       }
       
       .btn-primary:active {
-         background-color: rgb( 54, 44, 87 );   
+         background-color: rgb(229, 34, 27);   
       }
    
    .btn-red {
@@ -139,7 +187,7 @@ color: #999999;
     position: fixed;
     top: 50px;
     left: 10px;
-    font-size: 5em;
+    font-size: 3rem;
     text-align: center;
     line-height: 0;
     cursor: pointer;
@@ -156,7 +204,7 @@ color: #999999;
 /*We are giving the li item a shorter width to activate 'pop-out' effect when you hover*/
 .side-menu--list li {
     font-size: 0;
-    width: 150px;
+    width: 110px;
 }
 .side-menu--list a {
     color: #fff;
@@ -166,45 +214,44 @@ color: #999999;
     line-height: 2rem;
     background: #333;
     padding-left: 1rem;
-    width: 200px;
-    font-size: 0.5rem;
+    width: 110px;
+    font-size: 1.2rem;
 }
 .side-menu--list {
     list-style: none;
     padding-left: 0;
+    width : 10rem;
 }
 /*.subset is a sub-menu that we are styling to stand out a bit*/
 .side-menu--list li a.subset {
-    font-size: 1.4rem;
-    height: 2.2rem;
-    line-height: 2.2rem;
+    /* font-size: 1.4rem; */
+    /* height: 2.2rem; */
+    /* line-height: 2.2rem; */
+    font-size: 1.1rem;
+    height: 10rem;
+    line-height: 8rem;
     padding-left: .5rem;
-    background: #222;
+    background: #0B3B0B;
 }
 /*Applying overflow:hidden to get rid of the cluttering when the height is minimized*/
-.side-menu--list li {
+/* .side-menu--list li {
     height: 2.2rem;
     overflow: hidden;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-}
+} */
 /*when you hover a li it expands to show all the menu links(and expands itself only)*/
 .side-menu--list li:hover {
-    height: 8.2rem;
+    /* height: 8.2rem;
+    width: 180px; */
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+    font-size: 2rem;
+    height: 12rem;
+    line-height: 10rem;
+    padding-top : 1.2rem;
+    padding-left: .9rem;
     cursor: pointer;
-    width: 180px;
-}
-/*We are skipping a sub-menu link and applying transformation to the follow-ups*/
-.side-menu--list li a:not(:first-child):hover {
-    cursor: pointer;
-    background-color: #fff;
-    color: #333;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    -webkit-transform: translateX(10px);
-    transform: translateX(10px);
 }
 </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -234,7 +281,7 @@ color: #999999;
     </script>
 </head>
 <body>
-    
+       
 
     <!--   MENU STRUCTURE-->
 
@@ -251,12 +298,9 @@ color: #999999;
             <ul class="side-menu--list">
                 <li>
                     <a class="subset" href="http://127.0.0.1:53392/Home.html">Home</a>
-                    <a href="http://127.0.0.1:53392/Huminity.html">1 Water</a>
-                    <a href="http://127.0.0.1:53392/Illumination.html">Light</a>
-                    <a href="http://127.0.0.1:53392/Temperature.html">℃/℉</a>
                 </li>
                 <li>
-                    <a class="subset" href="http://127.0.0.1:53392/Huminity.html" >Humidity</a>
+                    <a class="subset" href="http://127.0.0.1:53392/huminity.html" >Humidity</a>
                 </li>
                 <li>
                     <a class="subset" href="http://127.0.0.1:53392/Illumination.html">Illumination</a>
@@ -272,13 +316,15 @@ color: #999999;
         </div>
     </div>
       <div>
-    <img src="https://png.clipart.me/istock/previews/9267/92671403-thermometer-icon-flat-design-vector.jpg"  style="position: absolute; left: 1000px; top: 300px">
+    <img src="https://png.clipart.me/istock/previews/9267/92671403-thermometer-icon-flat-design-vector.jpg" style="position: absolute; width: 450px; height: 750px; left: 400px; top: 0px">
       </div>
-
-    <a href="#" class="btn-blue" style="position: absolute; left: 200px; top: 100px"> Heat </a>
-    <h1 id="text3d" style="position: absolute; left: 200px; top: 100px">21℃   <br><br> ! Sunflower is suitable for temperatures between 21 ℃ and 28 ℃.</h1>
-    
-    <div id="chart_div" style="position: absolute; width: 900px; height: 500px; top: 500px"></div>
+    <div class="button aqua"  style="position: absolute; width: 270px; height: 120px; left: 450px; top: 800px">   <!--21퍼센트,온도,조도의 수치를 나타내는 것을 버튼으로 구현-->
+        <div class="glare "></div>
+    21  ℃
+    </div>
+    <a href="#" class="btn-blue" style="position: absolute; width: 400px; left: 1200px; height: 200px; top: 50px"> Heat </a>
+    <h1 id="text3d" style="position: absolute; left: 1100px; top: 280px">! Sunflower is suitable for temperatures between 21 ℃ and 28 ℃</h1>
+ <div id="chart_div" style="position: absolute; width: 900px; left: 1000px; height: 500px; top: 500px"></div>
 </body>
 
 </html>
