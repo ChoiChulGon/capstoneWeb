@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>                                                     
+    <title>Mini Smart Farm Kit</title>                                                     
 <style>
 body {
     font-family: 'Economica', sans-serif;
@@ -195,7 +195,7 @@ table > tbody > tr:hover > td {
     position: fixed;
     top: 50px;
     left: 10px;
-    font-size: 5em;
+    font-size: 3rem;
     text-align: center;
     line-height: 0;
     cursor: pointer;
@@ -212,7 +212,7 @@ table > tbody > tr:hover > td {
 /*We are giving the li item a shorter width to activate 'pop-out' effect when you hover*/
 .side-menu--list li {
     font-size: 0;
-    width: 150px;
+    width: 110px;
 }
 .side-menu--list a {
     color: #fff;
@@ -222,45 +222,44 @@ table > tbody > tr:hover > td {
     line-height: 2rem;
     background: #333;
     padding-left: 1rem;
-    width: 200px;
-    font-size: 0.5rem;
+    width: 110px;
+    font-size: 1.2rem;
 }
 .side-menu--list {
     list-style: none;
     padding-left: 0;
+    width : 10rem;
 }
 /*.subset is a sub-menu that we are styling to stand out a bit*/
 .side-menu--list li a.subset {
-    font-size: 1.4rem;
-    height: 2.2rem;
-    line-height: 2.2rem;
+    /* font-size: 1.4rem; */
+    /* height: 2.2rem; */
+    /* line-height: 2.2rem; */
+    font-size: 1.1rem;
+    height: 10rem;
+    line-height: 8rem;
     padding-left: .5rem;
-    background: #222;
+    background: #0B3B0B;
 }
 /*Applying overflow:hidden to get rid of the cluttering when the height is minimized*/
-.side-menu--list li {
+/* .side-menu--list li {
     height: 2.2rem;
     overflow: hidden;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-}
+} */
 /*when you hover a li it expands to show all the menu links(and expands itself only)*/
 .side-menu--list li:hover {
-    height: 8.2rem;
+    /* height: 8.2rem;
+    width: 180px; */
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
+    font-size: 2rem;
+    height: 12rem;
+    line-height: 10rem;
+    padding-top : 1.2rem;
+    padding-left: .9rem;
     cursor: pointer;
-    width: 10px;
-}
-/*We are skipping a sub-menu link and applying transformation to the follow-ups*/
-.side-menu--list li a:not(:first-child):hover {
-    cursor: pointer;
-    background-color: #fff;
-    color: #333;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    -webkit-transform: translateX(10px);
-    transform: translateX(10px);
 }
 </style>
 </head>
@@ -282,9 +281,6 @@ table > tbody > tr:hover > td {
             <ul class="side-menu--list">
                 <li>
                     <a class="subset" href="http://127.0.0.1:53392/Home.html">Home</a>
-                    <a href="http://127.0.0.1:53392/Huminity.html">1 Water</a>
-                    <a href="http://127.0.0.1:53392/Illumination.html">Light</a>
-                    <a href="http://127.0.0.1:53392/Temperature.html">℃/℉</a>
                 </li>
                 <li>
                     <a class="subset" href="http://127.0.0.1:53392/Huminity.html" >Humidity</a>
@@ -311,31 +307,31 @@ table > tbody > tr:hover > td {
 
    <tbody>
       <tr>
-         <td>Plant Select</td>
+         <td><a href="http://127.0.0.1:53392/Plant_Select.html">Plant Select</a></td>
          <td>></td>
          <td></td>
       </tr><!-- Table Row -->
 
       <tr>
-         <td>Module 1, 2</td>
+         <td><a href="http://127.0.0.1:53392/Module_1,2.html">Module 1, 2</a></td>
          <td>></td>
          <td></td>
       </tr><!-- Darker Table Row -->
 
       <tr>
-         <td>Notice</td>
+         <td><a href="http://127.0.0.1:53392/Notice.html">Notice</a></td>
+         <td>></td>
+         <td></td>
+      </tr>
+
+      <tr> <!-- 개발자에게 이메일 보냄 -->
+         <td><a href="mailto:webmaster@korea.internet.com?cc=cck1284@naver.com">Customer Service</a></td>
          <td>></td>
          <td></td>
       </tr>
 
       <tr>
-         <td>Customer Service</td>
-         <td>></td>
-         <td></td>
-      </tr>
-
-      <tr>
-         <td>Help </td>
+         <td><a href="http://127.0.0.1:53392/Help.html">Help</a></td>
          <td>></td>
          <td></td>
       </tr>
