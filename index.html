@@ -93,6 +93,7 @@ input[type="button"].solid:active   {
   margin: 50px auto;
   text-align: center;
 }
+
 .logo a {
   text-decoration: none;
   -webkit-transform: perspective(2.5em) rotateX(15deg) scaleY(0.8);
@@ -218,6 +219,10 @@ input[type="button"].solid:active   {
     padding-left: .9rem;
     cursor: pointer;
 }
+/* .ale { 
+  margin: 50px auto;
+  text-align: center;
+} */
 /*We are skipping a sub-menu link and applying transformation to the follow-ups*/
 /* .side-menu--list li a:not(:first-child):hover {
     cursor: pointer;
@@ -230,24 +235,121 @@ input[type="button"].solid:active   {
 } */
 </style>
     <link href='https://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>
+
+    <!-- 파이어베이스 SDK 링크 -->
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+
+    <script type ="text/javascript"> 
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB1lkDzQfP2A2YcHTp0lLOG9QMHrXExcBg",
+        authDomain: "capstonemaster-3b52b.firebaseapp.com",
+        databaseURL: "https://capstonemaster-3b52b.firebaseio.com",
+        projectId: "capstonemaster-3b52b",
+        storageBucket: "capstonemaster-3b52b.appspot.com",
+        messagingSenderId: "463496465390"
+    };
+    firebase.initializeApp(config);
+
+    var database = firebase.database(); //데이터베이스에서 데이터를 읽거나 쓰기 위하여 db참조를 가져온다.
+    // firebase function
+
+    //db에 데이터 쓰기 작업.
+        firebase.database().ref('users/').set({ //test라는 폴더?라는 위치에 이름과 메일을 쓴다. 접근방식 제어
+            username : 'test',
+            email:'test@gmail.com'
+        });
+
+
+    //db에서 데이터 읽어오기
+    // firebase.database().ref('/userFarm').once('value',function(snapshot){
+    //     var message = snapshot.val();
+    //     console.log(message);
+    //     $("Serial_M").text(message);
+    // });
+    
+
+
+    // firebase.database().ref('/userFarm/test01').once('value').then(function (snap) {
+    //     console.log(snap.key);
+    // });
+
+    function checkNumber() {
+        // 서버에서 키값을 받아온다.
+        // input으로 들어온 데이터를 serialNumber 매개변수로 가져온다.
+        // 가져온 매개번수와 서버에서 가져온 키값을 비교한다.
+        // onClick="checkNumber(유저입력값)"
+        console.log();
+
+        var input = document.getElementById("search").value; 
+
+        firebase.database().ref('/userFarm/').once('value').then(function (snap){
+            console.log(snap.val());
+            console.log(input);
+
+            var keys = Object.keys(snap.val());
+
+            for(i=0; i<keys.length; i++){
+                console.log(snap.val());
+
+                if(keys[i] == input ) {
+                // go mainPage
+                    console.log("success");
+                    self.location='https://capstonemaster-3b52b.firebaseapp.com/Home.html';
+                    
+                    firebase.database().ref('/userFarm/test01/numberOfPlants').once('value').then(function (snap){
+            console.log(snap.val());
+
+            var keys = Object.keys(snap.val());
+
+                console.log(snap.val());
+
+                if(keys == 0 ) {
+                // go mainPage
+                    console.log("success");
+                    self.location='https://capstonemaster-3b52b.firebaseapp.com/Plant_Select.html';
+                }
+                // 로그인 실패 처리해야함
+                
+        });
+                }
+                // 로그인 실패 처리해야함
+                
+            }
+        });
+        console.log("start");
+    };
+
+    
+
+    
+    </script>
+
 </head>
 
 <body>
     <div class="logo">
         <a>WELCOME!<br>Mini Smart Farm Kit ver 1.0</a>
-</div>
+    </div>
+    <!-- <div class="ale">
+        
+    <div> -->
 
-   
-    <section id="wrapper">
+
+
+<section id="wrapper">
    <div id="main">
-      <form name ="serial" action="http://127.0.0.1:53392/home.html">
-         <input type="text" id="search" placeholder="Serial Number" >
-         <input type="button" onClick="self.location='https://choichulgon.github.io/capstoneWeb/Home.html'" class="solid" value="signIn"> <!--버튼 클릭시 Home.html로 이동-->
-      </form>
+         <input id="search" name = "search1" type="text" placeholder="Serial Number"> <!--시리얼 넘버 id를 주어 db에서 읽어올 데이터를 표시-->
+         <!--버튼 클릭시 Home.html로 이동-->
+         <!-- <input type="button" onClick="self.location='https://capstonemaster-3b52b.firebaseapp.com/Home.html'" class="solid" value="signIn"> -->
+         <!-- <input type="button" onClick="writeUserData()" class="solid" value="signIn"> -->
+         <input type="button" onClick="checkNumber()" class="solid" value="signIn">
    </div>
    <!--main-->
-
 </section>
+
 <!--wrapper-->
 </body>
 
