@@ -255,31 +255,118 @@ color: #e59d0d;;
     cursor: pointer;
 }
 </style>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawVisualization);
-      function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-        var data = google.visualization.arrayToDataTable([
-         ['Month', 'Water', 'Light', '℃/℉'],
-         ['03/28', 165,      938,         522        ],
-         ['03/29',  135,      1120,        599     ],
-         ['03/30',  157,      1167,        587],
-         ['03/31',  139,      1110,        615],
-         ['04/01',  136,      691,         629]
-      ]);
-    var options = {
-      title : 'Three essential elements for plant growth',
-      vAxis: {title: 'Amount'},
-      hAxis: {title: 'day'},
-      seriesType: 'bars',
-      series: {5: {type: 'line'}}
-    };
-    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-  }
-    </script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <!--firebase SDK 링크-->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+        <script src=" http://www.google.com/uds/modules/gviz/gviz-api.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://www.google.com/jsapi"></script>
+    
+        <script type="text/javascript"> 
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyB1lkDzQfP2A2YcHTp0lLOG9QMHrXExcBg",
+                authDomain: "capstonemaster-3b52b.firebaseapp.com",
+                databaseURL: "https://capstonemaster-3b52b.firebaseio.com",
+                projectId: "capstonemaster-3b52b",
+                storageBucket: "capstonemaster-3b52b.appspot.com",
+                messagingSenderId: "463496465390"
+            };
+            firebase.initializeApp(config);
+    
+            var database = firebase.database(); //데이터베이스에서 데이터를 읽거나 쓰기 위하여 db참조를 가져온다.
+    
+            // google.charts.load('visualization', {packages: ['corechart']});
+            // google.charts.setOnLoadCallback(drawChart);
+    
+            // function drawChart() {
+            //     var data = new google.visualization.DataTable();
+            //     data.addColumn('string', 'Month');
+            //     data.addColumn('number', 'Water');
+            //     data.addColumn('number', 'Light');
+            //     data.addColumn('number', '℃/℉');
+    
+                // var keys;
+                // var values;
+                // var output = [];
+                // firebase.database().ref('/farmGraph/test01/').once('value').then(function(snapshot) { //조도
+                //     keys = Object.keys(snapshot.val());
+                //     values = Object.values(snapshot.val());
+    
+                //     console.log(keys);
+                //     console.log(values);
+                // });
+                // data.addRows(output);
+                // console.log(keys);
+                // console.log(values);
+    
+                  
+            
+    
+    
+            ///userFarm/test01/humidity/status에 있는 값을 출력하기 위한 코드. test라는 id로 body에 div로 넘김.
+            firebase.database().ref('/userFarm/test01/illuminance/sensorvalue').once('value').then(function (snap) {
+                // console.log('snap.val()', snap.val());
+                document.getElementById("illu").innerHTML = snap.val();
+            });
+    
+                firebase.database().ref('/farmGraph/test01/').once('value').then(function(snapshot) {
+                    keys = snapshot.val();
+                    
+                    google.charts.load('current', { packages: ['bar'] });
+                    google.charts.setOnLoadCallback(drawChart);
+                
+                function drawChart() {
+                  var array = $.map(keys, function(value, index) {
+                      return [value];
+                  });
+    
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Month');
+                data.addColumn('number', 'Water');
+                data.addColumn('number', 'Light');
+                data.addColumn('number', '℃/℉');
+    
+                var tempData=[];
+                  var output = [];
+                  for (var i = 0; i < 8; i++) {
+                      keys = Object.keys(snapshot.val());
+                      values = Object.values(snapshot.val());
+    
+                      console.log(values);
+                      console.log(values.humidity);
+                      output.push([
+                          keys[i],
+                          //  parseFloat(parse(item.time)),
+                          parseInt(values[i].humidity),
+                          parseInt(values[i].illuminance),
+                          parseInt(values[i].temperature)
+                      ]);
+                  }
+    
+                  console.log(output);
+                  data.addRows(output);
+    
+                  var options = {
+          title : 'Three essential elements for plant growth',
+          vAxis: {title: 'Amount'},
+          hAxis: {title: 'day'},
+          seriesType: 'bars',
+          series: {5: {type: 'line'}}
+        };
+                  
+    
+                var chart = new google.charts.Bar(document.getElementById('chart_div'));
+                  chart.draw(data, google.charts.Bar.convertOptions(options));
+                  }});
+                 
+                  
+    
+    
+                // Some raw data (not necessarily accurate)
+                //var data = google.visualization.arrayToDataTable(growthTable);
+        </script>
 </head>
 <body>
     <!--   MENU STRUCTURE-->
@@ -289,19 +376,19 @@ color: #e59d0d;;
         <div class="side-menu">
             <ul class="side-menu--list">
                 <li>
-                    <a class="subset" href="https://choichulgon.github.io/capstoneWeb/Home.html">Home</a>
+                    <a class="subset" href="https://capstonemaster-3b52b.firebaseapp.com/Home.html">Home</a>
                 </li>
                 <li>
-                    <a class="subset" href="https://choichulgon.github.io/capstoneWeb/Humidity.html" >Humidity</a>
+                    <a class="subset" href="https://capstonemaster-3b52b.firebaseapp.com/Humidity.html" >Humidity</a>
                 </li>
                 <li>
-                    <a class="subset" href="https://choichulgon.github.io/capstoneWeb/Illumination.html">Illumination</a>
+                    <a class="subset" href="https://capstonemaster-3b52b.firebaseapp.com/Illumination.html">Illumination</a>
                 </li>
                 <li>
-                    <a class="subset" href="https://choichulgon.github.io/capstoneWeb/Temperature.html">Temperature</a>
+                    <a class="subset" href="https://capstonemaster-3b52b.firebaseapp.com/Temperature.html">Temperature</a>
                 </li>
                 <li>
-                    <a class="subset" href="https://choichulgon.github.io/capstoneWeb/Setting.html">Setting</a>
+                    <a class="subset" href="https://capstonemaster-3b52b.firebaseapp.com/Setting.html">Setting</a>
                 </li>
             </ul>
 
@@ -310,11 +397,10 @@ color: #e59d0d;;
       <div>
     <img src="http://cfile229.uf.daum.net/image/24203C3D53D862EB1E9D9C"  style="position: absolute; width: 600px; height: 750px; left: 300px; top: 0px">
       </div>
-    <div class="button aqua"  style="position: absolute; width: 270px; height: 120px; left: 450px; top: 800px">   <!--21퍼센트,온도,조도의 수치를 나타내는 것을 버튼으로 구현-->
+    <div class="button aqua"  id="illu" style="position: absolute; width: 270px; height: 120px; left: 450px; top: 800px">   <!--21퍼센트,온도,조도의 수치를 나타내는 것을 버튼으로 구현-->
         <div class="glare "></div>
-    21 lux
     </div>
-    <a href="https://choichulgon.github.io/capstoneWeb/Illumination.html" class="btn-blue" style="position: absolute; width: 400px; left: 1200px; height: 200px; top: 50px"> Light </a>
+    <a href="https://capstonemaster-3b52b.firebaseapp.com/Illumination.html" class="btn-blue" style="position: absolute; width: 400px; left: 1200px; height: 200px; top: 50px"> Light </a>
     <h1 id="text3d" style="position: absolute; left: 1100px; top: 300px">! Sunflower is suitable for 21 lux ~ 30 lux</h1>
     <div id="chart_div" style="position: absolute; width: 900px; left: 1000px; height: 500px; top: 500px"></div>
 </body>
