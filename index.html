@@ -298,7 +298,7 @@ input[type="button"].solid:active   {
                 if(keys[i] == input ) {
                 // go mainPage
                     console.log("success");
-                    self.location='https://capstonemaster-3b52b.firebaseapp.com/Home.html';
+                    self.location='https://capstonemaster-845d4.firebaseapp.com/Home.html';
                     
                     firebase.database().ref('/userFarm/test01/numberOfPlants').once('value').then(function (snap){
             console.log(snap.val());
@@ -310,7 +310,7 @@ input[type="button"].solid:active   {
                 if(keys == 0 ) {
                 // go mainPage
                     console.log("success");
-                    self.location='https://capstonemaster-3b52b.firebaseapp.com/Plant_Select.html';
+                    self.location='https://capstonemaster-845d4.firebaseapp.com/Plant_Select.html';
                 }
                 // 로그인 실패 처리해야함
                 
@@ -344,7 +344,7 @@ input[type="button"].solid:active   {
    <div id="main">
          <input id="search" name = "search1" type="text" placeholder="Serial Number"> <!--시리얼 넘버 id를 주어 db에서 읽어올 데이터를 표시-->
          <!--버튼 클릭시 Home.html로 이동-->
-         <!-- <input type="button" onClick="self.location='https://capstonemaster-3b52b.firebaseapp.com/Home.html'" class="solid" value="signIn"> -->
+         <!-- <input type="button" onClick="self.location='https://capstonemaster-845d4.firebaseapp.com/Home.html'" class="solid" value="signIn"> -->
          <!-- <input type="button" onClick="writeUserData()" class="solid" value="signIn"> -->
          <input type="button" onClick="checkNumber()" class="solid" value="signIn">
    </div>
